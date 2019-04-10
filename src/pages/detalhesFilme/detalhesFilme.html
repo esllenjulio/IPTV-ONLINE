@@ -1,0 +1,175 @@
+<ion-header>
+
+  <ion-navbar color="dark">
+    <!-- <ion-title>Detalhes</ion-title> -->
+    <!-- <button ion-button clear  (click)="verificar();" >
+        <ion-icon ios="ios-pause" md="md-pause"></ion-icon>
+      </button> -->
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content color="dark" style="background:#222">
+
+  <!-- <div class="tv">
+    <div class="col text-center">
+      <video #myvid id="my-video" preload="none" autoplay="true" class="video-js vjs-big-play-centered mini-play vjs-4-3 center"
+        [poster]="poster">
+        <source [src]="video" [type]="tipo">
+      </video>
+    </div>
+  </div> -->
+
+  <ion-item color="dark" style="margin-top:-1.5%">
+    <ion-avatar item-start>
+      <img [src]='item.logo' onError="this.src='assets/imgs/iptv.png';">
+    </ion-avatar>
+    <h2>{{item.title}}</h2>
+  </ion-item>
+
+  <ion-item color="dark" style="margin-top:-2%" no-line>
+    <ion-buttons>
+      <ion-grid color="dark">
+        <ion-row>
+
+          <ion-col col-3>
+            <button ion-button clear item-end (click)="abrirPLaylist();">
+              <ion-icon [name]="selectedMenu ? 'md-list' : 'md-arrow-round-up'" float-right></ion-icon>
+            </button>
+          </ion-col>
+
+          <ion-col col-3>
+            <button ion-button clear (click)="previous();" >
+              <ion-icon ios="ios-skip-backward" md="md-skip-backward"></ion-icon>
+            </button>
+          </ion-col>
+
+          <!-- <ion-col col-3 [hidden]="!playPause">
+            <button ion-button clear  (click)="pause();" >
+              <ion-icon ios="ios-pause" md="md-pause"></ion-icon>
+            </button>
+          </ion-col> -->
+
+          <ion-col col-3 >
+              <button ion-button clear icon-end  (click)="play(item);"  >
+                <ion-icon ios="ios-play" md="md-play"></ion-icon>
+              </button>
+            </ion-col>
+
+          <ion-col col-3>
+            <button ion-button clear (click)="next();" >
+              <ion-icon ios="ios-skip-forward" md="md-skip-forward"></ion-icon>
+            </button>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </ion-buttons>
+
+
+  </ion-item>
+
+  <ion-row [hidden]="playList" class="playList">
+    <ion-list color="dark" style=" width:100%;margin-top: -1%">
+      <ion-list-header color="dark">
+        Lista de reprodução
+      </ion-list-header>
+
+      <ion-item color="dark" *ngFor="let itemLista of this.itensPlayList">
+        <ion-thumbnail item-start>
+          <img [src]="itemLista.logo" onError="this.src='assets/imgs/iptv.png';">
+        </ion-thumbnail>
+        <h2>{{itemLista.title}}</h2>
+        <p>{{itemLista.group}} • {{itemLista.subgroup}}</p>
+        <button ion-button clear item-end (click)="play(itemLista)">Play</button>
+      </ion-item>
+    </ion-list>
+
+    <ion-infinite-scroll *ngIf="this.fimLista" (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="Carregando dados...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+  </ion-row>
+
+
+  <ion-row padding [hidden]="!playList" >
+    <img class="img" [src]='item.logo' onError="this.src='assets/imgs/iptv.png';" height="180" width="150">
+  </ion-row>
+  <!--
+  <ion-row padding>
+    <ion-col>
+      <p>{{item.description}}</p>
+    </ion-col>
+  </ion-row>
+
+  <ion-row padding>
+    <img class="img" [src]='item.img' height="150" width="150">
+  </ion-row>
+  <ion-list ion-item>
+    Comentários
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-start clear small>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>{{item.like}} likes</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-start clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>{{comentarios.length}} comentarios</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+
+  <ion-row>
+    <ion-col center>
+      <ion-list *ngFor="let i of comentarios">
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="assets/imgs/user.png">
+          </ion-avatar>
+          <h2>Anônimo</h2>
+          <p>{{i.comentario}}</p>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>-->
+</ion-content>
+
+<!-- <ion-footer>
+  <ion-toolbar color="dark">
+   <ion-buttons>
+      <ion-grid>
+        <ion-row col-12>
+          <ion-col col-4>
+            <button ion-button  clear icon-end  (click)="play();">
+              <ion-icon ios="ios-play" md="md-play"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col col-4 col-sm-9 col-md-4 col-lg-4 col-xl-3>
+            <button ion-button  clear icon-end  (click)="previous();">
+              <ion-icon ios="ios-skip-backward" md="md-skip-backward"></ion-icon>
+            </button>
+          </ion-col>
+          
+          <ion-col col-4>
+            <button ion-button clear icon-end  (click)="pause();">
+              <ion-icon ios="ios-pause" md="md-pause"></ion-icon>
+            </button>
+          </ion-col>
+
+          <ion-col col-4>
+            <button ion-button  clear icon-end  (click)="next();">
+              <ion-icon ios="ios-skip-forward" md="md-skip-forward"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer> -->

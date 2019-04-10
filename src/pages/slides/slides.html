@@ -1,0 +1,67 @@
+<!--
+  Generated template for the SlidesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<ion-content>
+  <!-- <button (click)="sairSlides()">proximo</button>
+  <ion-slides pager>
+
+    <ion-slide style="background-color: green">
+      <h2>Slide 1</h2>
+    </ion-slide>
+  
+    <ion-slide style="background-color: blue">
+      <h2>Slide 2</h2>
+    </ion-slide>
+  
+    <ion-slide style="background-color: red">
+      <h2>Slide 3</h2>
+      
+    </ion-slide>
+  
+  </ion-slides> -->
+
+  <ion-slides #slides pager>
+    <ion-slide *ngFor="let slide of sliders">
+      <ion-toolbar>
+        <ion-buttons left>
+          <button ion-button color="primary" (click)="prev()" *ngIf="this.slides.roundLengths">
+            <ion-icon name="arrow-back"></ion-icon>
+            &nbsp; Voltar
+          </button>
+        </ion-buttons>
+        <ion-buttons right>
+          <button ion-button color="primary" (click)="next()">
+            Próximo &nbsp;
+            <ion-icon name="arrow-forward"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-toolbar>
+      <img [src]="slide.image" class="slide-image" />
+      <h2 class="slide-title" [innerHTML]="slide.title"></h2>
+      <p [innerHTML]="slide.description"></p>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-toolbar>
+        <ion-buttons left>
+          <button ion-button color="primary" (click)="prev()" *ngIf="this.slides.roundLengths">
+            <ion-icon name="arrow-back"></ion-icon>
+            &nbsp; Voltar
+          </button>
+        </ion-buttons>
+
+      </ion-toolbar>
+      <img src="assets/imgs/slider2.png" class="slide-image" />
+      <h2 class="slide-title">Vamos lá?</h2>
+      <button ion-button large clear icon-end color="primary" (click)="sairSlides()">
+        Iniciar
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

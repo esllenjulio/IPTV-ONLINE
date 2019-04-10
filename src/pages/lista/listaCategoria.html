@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon color="danger" name="menu"></ion-icon>
+    </button>
+    <!-- <ion-item>
+      <ion-title>{{this.generoLista}} </ion-title>
+      <ion-icon ios="ios-filing" md="md-filing" item-start></ion-icon>
+    </ion-item> -->
+    <ion-item>
+      <!-- <ion-searchbar class="buscarItem" (ionInput)="getItems($event)" placeholder="Pesquisar"></ion-searchbar> -->
+      <ion-badge item-end>{{this.list_filmes.length}}</ion-badge>
+    </ion-item>
+  </ion-navbar>
+</ion-header>
+
+<ion-content fullscreen style="background:rgb(5, 5, 5)">
+
+  <!-- <ion-row> -->
+  <!-- <ion-searchbar class="buscarItem" (ionInput)="getItems($event)" placeholder="Pesquisar"></ion-searchbar> -->
+  <!-- </ion-row> -->
+  <!-- <ion-row>
+    <ion-list>
+      <ion-item padding>
+        <ion-label>Categoria</ion-label>
+        <ion-select (ionChange)="buscarListaCategoria($event)">
+          <ion-option #opt *ngFor="let i of this.storageProvider.subgrupos" [value]=i>{{i}}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </ion-row> -->
+  <ion-row padding>
+    <div class="iconEmpty" *ngIf="this.list_filmes.length == 0">
+      <br>
+      <h3>Desculpe!</h3>
+      <h4>Lista vazia.</h4>
+      <br>
+      <img src="assets/imgs/empty.png" alt="">
+    </div>
+  </ion-row>
+
+  <!-- <ion-row>
+    <div class="lista">
+      <ion-list>
+
+        <ion-item class="animated flipInX" *ngFor="let filme of listaFilmes" (click)="openNavDetailsPage(filme)"  >
+          <ion-avatar item-start>
+            <img [src]="filme.logo">
+          </ion-avatar>
+          {{filme.title}}
+
+         
+          <button ion-button color="dark" item-end round>
+            Abrir
+          </button>
+        </ion-item>
+
+      </ion-list>
+
+      <ion-infinite-scroll *ngIf="this.fimLista" (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando dados...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+
+    </div>
+  </ion-row> -->
+          <ion-list [virtualScroll]="listaFilmes" approxItemHeight="100px">
+              <!-- <ion-item-divider *virtualHeader="let header">
+                  {{ header }}
+                </ion-item-divider> -->
+
+                
+            <ion-item *virtualItem="let item" (click)="openNavDetailsPage(item)">
+              <ion-thumbnail  item-start>
+                <img [src]="item.logo" onError="this.src='assets/imgs/iptv.png';">
+              </ion-thumbnail >
+              {{ item.title }} 
+            </ion-item>
+          
+          </ion-list>
+
+
+</ion-content>

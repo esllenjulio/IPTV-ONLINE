@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "iptv": "hd-iptv-a53f4",
+    "default": "iptv-a02fe"
+  }
+}

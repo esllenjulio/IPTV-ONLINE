@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Minhas listas</ion-title>
+  </ion-navbar>
+</ion-header>
+<!-- 
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+      <ion-icon [name]="item.icon" item-start></ion-icon>
+      {{item.title}}
+      <div class="item-note" item-end>
+        {{item.note}}
+      </div>
+    </button>
+   
+  </ion-list>
+  <div *ngIf="selectedItem" padding>
+    You navigated here from <b>{{selectedItem.title}}</b>
+  </div>
+</ion-content> -->
+
+<ion-content>
+  <ion-list>
+    <!-- <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+      {{item.nome}}
+      <div class="item-note" item-end>
+        {{item.url | slice:0:11}}
+      </div>
+    </button> -->
+
+    <ion-list>
+      <ion-item *ngFor="let item of this.filmesProvider.listaBaixadas">
+        <!-- <ion-icon  md="md-checkmark-circle"  item-start *ngIf="item.principal"></ion-icon> -->
+        <ion-icon md="md-square-outline" color="primary" *ngIf="item.principal != 1" (click)="itemSelect(item)" item-start></ion-icon>
+        <ion-icon md="md-checkbox" color="primary" *ngIf="item.principal==1" item-start></ion-icon>
+        <label >{{item.nome}}</label>
+        <!-- <ion-icon name="rose" item-end></ion-icon> -->
+        <button ion-button round color="secondary" item-end *ngIf="item.principal == 1">
+          <ion-icon ios="ios-create" md="md-create"></ion-icon>
+        </button>
+        <button ion-button round color="danger" item-end [disabled]="item.principal == 1">
+          <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+        </button>
+
+      </ion-item>
+    </ion-list>
+
+  </ion-list>
+  <div *ngIf="selectedItem" padding>
+    You navigated here from <b>{{selectedItem.title}}</b>
+  </div>
+</ion-content>

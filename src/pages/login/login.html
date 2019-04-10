@@ -1,0 +1,35 @@
+
+
+
+<ion-content padding>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col ></ion-col>
+      <ion-col col-auto>
+        <form #login class="form" [formGroup]="todo">
+          <ion-list>
+            
+              <img class="img" src="assets/imgs/iptv.png" width="50%"/>
+           
+            <ion-item>
+              <ion-label floating>Email</ion-label>
+              <ion-input type="email"  name="email" formControlName="email" required></ion-input>
+            </ion-item>
+      
+            <ion-item>
+              <ion-label floating>Senha</ion-label>
+              <ion-input type="password" name="senha" formControlName="senha" required></ion-input>
+            </ion-item>
+            <br><br>
+            <button ion-button block [disabled]="!todo.valid" (click)=logar(login)>Entrar</button>
+          </ion-list>
+          <a padding (click)="cadastrar()">cadastrar-se</a>
+        </form>
+
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

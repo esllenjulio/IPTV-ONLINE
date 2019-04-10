@@ -1,0 +1,111 @@
+<ion-header no-border>
+  <ion-toolbar class="toolbar">
+    <button ion-button menuToggle>
+      <ion-icon color="primary" name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <img class="animated slideInUp" src="https://hd-iptv-a53f4.firebaseapp.com/assets/imgs/iptv.png" style="margin-left:30%"
+        width="50" height="50">
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content fullscreen class="card-background-page" style="background-color:rgb(34, 34, 34)" #content>
+  <!-- <ion-grid> -->
+    <br>
+    <ion-row [hidden]='!this.filmesProvider?.listaFilmesVisitado.length'>
+
+      <div style="margin-bottom:10px;" class="barra">
+        <div style="width: 100%; margin-top:10px; text-align: center">
+          <label>Visto Recentimente</label>
+        </div>
+        <div style="width: 100%; margin:0% 1%">
+          <label style="color:#488aff"> Totale: </label>
+          <label> {{this.filmesProvider.listaFilmesVisitado.length | json }}</label>
+        </div>
+
+      </div>
+
+      <div class="animated bounceInRight delay-1s  carousel">
+        <div class="animated pulse delay-2s item" *ngFor='let filme of this.filmesProvider.listaFilmesVisitado | slice:0:10;'
+          (click)="abrirFilme(filme)">
+          <img [src]="filme.logo" height="100" width="80" />
+          <label class="title">{{filme.title | slice:0:16 }}</label>
+        </div>
+      </div>
+      <br>
+    </ion-row>
+
+    <br>
+    <!-- <ion-row *ngFor="let cat of this.filmesProvider.listaFilmes">
+
+      <div style="margin-bottom:10px;" class="barra">
+        <div style="width: 100%; margin-top:10px; text-align: center">
+          <label>{{cat[0].subgroup}}</label>
+        </div>
+        <div style="width: 100%; margin:0% 1%" (click)="abrirListaCompleta(cat[0].subgroup)">
+          <label style="color:#488aff"> Total: </label>
+          <label> {{cat.length | json }}</label>
+          <ion-icon style="float:right; margin-right: 5%;" [hidden]='cat.length < 10' ios="ios-add-circle" md="md-add-circle"
+            color="primary"></ion-icon>
+          <label style="float:right; margin-right: 3%;" [hidden]='cat.length < 10'>Mostrar</label>
+        </div>
+
+      </div>
+
+
+      <div class="animated bounceInRight delay-10s  carousel">
+        <div class="animated pulse delay-2s item" *ngFor='let filme of cat | slice:0:10;' (click)="abrirFilme(filme)">
+          <img [src]="filme.logo" height="90" width="80" />
+          <label class="title">{{filme.title | slice:0:16 }}</label>
+        </div>
+      </div>
+
+      <br>
+
+    </ion-row> -->
+
+    <!-- <ion-infinite-scroll *ngIf="this.filmesProvider.fimLista" (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando dados...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll> -->
+
+<ion-list [virtualScroll]="this.filmesProvider.listaFilmes" approxItemHeight="250px" color="dark">
+
+      <ion-row style="width:100%; height:180px;" *virtualItem="let cat" color="dark">
+        <div class='barra' style="width: 100%; text-align: center">
+          <div style="width: 100%; text-align: center">
+            <label>{{cat[0].subgroup}}</label>
+          </div>
+          <div (click)="abrirListaCompleta(cat[0].subgroup)">
+            <label style="color:#488aff"> Total: </label>
+            <label> {{cat.length | json }}</label>
+            <ion-icon style="float:right; margin-right: 5%;" [hidden]='cat.length < 10' ios="ios-add-circle" md="md-add-circle"
+              color="primary"></ion-icon>
+            <label style="float:right; margin-right: 3%;" [hidden]='cat.length < 10'>Mostrar</label>
+          </div>
+
+        </div>
+
+        <div class="animated bounceInRight delay-10s  carousel">
+          <div class="animated pulse delay-2s item" *ngFor='let filme of cat | slice:0:10;' (click)="abrirFilme(filme)">
+            <img [src]="filme.logo" onError="this.src='assets/imgs/iptv.png';" height="90" width="80" />
+            <label class="title">{{filme.title | slice:0:16 }}</label>
+          </div>
+        </div>
+      </ion-row >
+
+
+
+      <!-- <br> -->
+
+    </ion-list>
+  <!-- </ion-grid> -->
+
+ 
+
+
+
+</ion-content>
